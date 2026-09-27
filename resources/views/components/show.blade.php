@@ -3,17 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $component['summary'] }}">
+    <meta name="description" content="{{ $component['seo_description'] }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#f45143">
 
-    <meta property="og:title" content="{{ $component['title'] }} — World components">
-    <meta property="og:description" content="{{ $component['summary'] }}">
+    <meta property="og:title" content="{{ $component['seo_title'] }}">
+    <meta property="og:description" content="{{ $component['seo_description'] }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ route('components.show', $slug) }}">
+    <meta property="og:site_name" content="World for Laravel">
+    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="{{ asset('og/world-ui.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ $component['title'] }} documentation for World">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $component['seo_title'] }}">
+    <meta name="twitter:description" content="{{ $component['seo_description'] }}">
+    <meta name="twitter:image" content="{{ asset('og/world-ui.png') }}">
+    <meta name="twitter:image:alt" content="{{ $component['title'] }} documentation for World">
 
-    <title>{{ $component['title'] }} — World components</title>
+    <title>{{ $component['seo_title'] }}</title>
 
     <link rel="canonical" href="{{ route('components.show', $slug) }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
@@ -26,14 +36,45 @@
     <script type="application/ld+json">
         {!! json_encode([
             '@context' => 'https://schema.org',
-            '@type' => 'TechArticle',
-            'headline' => $component['title'].' component',
-            'description' => $component['summary'],
-            'url' => route('components.show', $slug),
-            'isPartOf' => [
-                '@type' => 'WebSite',
-                'name' => 'World for Laravel',
-                'url' => url('/'),
+            '@graph' => [
+                [
+                    '@type' => 'TechArticle',
+                    '@id' => route('components.show', $slug).'#article',
+                    'headline' => $component['seo_title'],
+                    'description' => $component['seo_description'],
+                    'url' => route('components.show', $slug),
+                    'mainEntityOfPage' => route('components.show', $slug),
+                    'image' => asset('og/world-ui.png'),
+                    'isPartOf' => [
+                        '@type' => 'WebSite',
+                        '@id' => url('/').'#website',
+                        'name' => 'World for Laravel',
+                        'url' => url('/'),
+                    ],
+                ],
+                [
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 1,
+                            'name' => 'World',
+                            'item' => route('home'),
+                        ],
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 2,
+                            'name' => 'Components',
+                            'item' => route('components.index'),
+                        ],
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 3,
+                            'name' => $component['title'],
+                            'item' => route('components.show', $slug),
+                        ],
+                    ],
+                ],
             ],
         ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
@@ -60,7 +101,7 @@
                 <aside class="lg:sticky lg:top-24 lg:self-start" aria-label="Component navigation">
                     <div class="flex items-center justify-between lg:block">
                         <p class="text-xs font-semibold uppercase tracking-[.18em] text-slate-500">Components</p>
-                        <span class="text-xs text-slate-600 lg:mt-2 lg:block">Version 1.1.39</span>
+                        <span class="text-xs text-slate-600 lg:mt-2 lg:block">Version {{ config('world_ui.package_version') }}</span>
                     </div>
                     <nav class="mt-4 flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible" aria-label="World components">
                         @foreach ($components as $componentSlug => $navigationComponent)

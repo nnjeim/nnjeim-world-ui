@@ -3,19 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="World is a Laravel package for countries, states, cities, currencies, timezones, languages, and IP geolocation.">
+    <meta name="description" content="Add countries, states, cities, currencies, timezones, languages, and IP geolocation to Laravel with World and copy-ready UI examples.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#f45143">
 
-    <meta property="og:title" content="World for Laravel">
-    <meta property="og:description" content="Production-ready geographic data with framework-friendly examples.">
+    <meta property="og:title" content="Laravel Countries, States &amp; Cities Package — World">
+    <meta property="og:description" content="Production-ready geographic data for Laravel with copy-ready Blade, React, Angular, and Vue examples.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:site_name" content="World for Laravel">
+    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="{{ asset('og/world-ui.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="World for Laravel geographic data and UI components">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Laravel Countries, States &amp; Cities Package — World">
+    <meta name="twitter:description" content="Production-ready geographic data for Laravel with copy-ready UI examples.">
+    <meta name="twitter:image" content="{{ asset('og/world-ui.png') }}">
+    <meta name="twitter:image:alt" content="World for Laravel geographic data and UI components">
 
-    <title>World — Geographic data for Laravel</title>
+    <title>Laravel Countries, States &amp; Cities Package — World</title>
 
     <link rel="canonical" href="{{ url('/') }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
@@ -28,14 +36,38 @@
     <script type="application/ld+json">
         {!! json_encode([
             '@context' => 'https://schema.org',
-            '@type' => 'SoftwareApplication',
-            'name' => 'World for Laravel',
-            'applicationCategory' => 'DeveloperApplication',
-            'operatingSystem' => 'Any',
-            'softwareVersion' => '1.1.39',
-            'url' => url('/'),
-            'codeRepository' => 'https://github.com/nnjeim/world',
-            'license' => 'https://opensource.org/licenses/MIT',
+            '@graph' => [
+                [
+                    '@type' => 'WebSite',
+                    '@id' => url('/').'#website',
+                    'name' => 'World for Laravel',
+                    'url' => url('/'),
+                    'description' => 'Documentation and framework examples for the World Laravel package.',
+                ],
+                [
+                    '@type' => 'SoftwareApplication',
+                    '@id' => url('/').'#software',
+                    'name' => 'World for Laravel',
+                    'description' => 'A Laravel package for countries, states, cities, currencies, timezones, languages, and IP geolocation.',
+                    'applicationCategory' => 'DeveloperApplication',
+                    'operatingSystem' => 'Any',
+                    'softwareVersion' => config('world_ui.package_version'),
+                    'url' => url('/'),
+                    'image' => asset('og/world-ui.png'),
+                    'codeRepository' => 'https://github.com/nnjeim/world',
+                    'downloadUrl' => 'https://packagist.org/packages/nnjeim/world',
+                    'license' => 'https://opensource.org/licenses/MIT',
+                    'offers' => [
+                        '@type' => 'Offer',
+                        'price' => 0,
+                        'priceCurrency' => 'USD',
+                    ],
+                    'sameAs' => [
+                        'https://github.com/nnjeim/world',
+                        'https://packagist.org/packages/nnjeim/world',
+                    ],
+                ],
+            ],
         ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 </head>
@@ -51,9 +83,9 @@
                 <div>
                     <div class="mb-7 flex items-center gap-4">
                         <img src="{{ asset('brand/world-logo.jpg') }}" alt="World package logo" class="size-20 rounded-2xl border border-slate-200 bg-white object-cover shadow-lg shadow-[#f45143]/10 sm:size-24">
-                        <a href="https://github.com/nnjeim/world/releases/tag/1.1.39" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#f45143]/20 bg-[#f45143]/8 px-3 py-1.5 text-xs font-medium text-[#d83f33] transition hover:bg-[#f45143]/12">
+                        <a href="https://github.com/nnjeim/world/releases/tag/{{ config('world_ui.package_version') }}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#f45143]/20 bg-[#f45143]/8 px-3 py-1.5 text-xs font-medium text-[#d83f33] transition hover:bg-[#f45143]/12">
                             <span class="size-1.5 rounded-full bg-[#f45143] shadow-[0_0_12px_rgba(244,81,67,.55)]"></span>
-                            Version 1.1.39 is available
+                            Version {{ config('world_ui.package_version') }} is available
                             <span aria-hidden="true">→</span>
                         </a>
                     </div>

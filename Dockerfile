@@ -26,6 +26,7 @@ RUN apt-get update \
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 COPY docker/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/servername.conf /etc/apache2/conf-enabled/servername.conf
+COPY docker/php.ini /usr/local/etc/php/conf.d/world-ui.ini
 
 WORKDIR /var/www/html
 

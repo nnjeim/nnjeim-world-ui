@@ -4,8 +4,6 @@ namespace App\Support;
 
 final class ComponentCatalog
 {
-    public const DEFAULT_SLUG = 'country-selector';
-
     /**
      * @return array<string, array<string, mixed>>
      */
@@ -15,6 +13,8 @@ final class ComponentCatalog
             'country-selector' => [
                 'title' => 'Country selector',
                 'summary' => 'A searchable, keyboard-friendly selector backed by the complete World country dataset.',
+                'seo_title' => 'Laravel Country Selector Component — World',
+                'seo_description' => 'Build an accessible Laravel country selector for Blade, React, Angular, or Vue with live World API data and copy-ready examples.',
                 'status' => 'Stable',
                 'preview' => 'country',
                 'endpoint' => '/api/countries',
@@ -38,6 +38,8 @@ final class ComponentCatalog
             'location-selector' => [
                 'title' => 'Country, state, and city selector',
                 'summary' => 'Three dependent selectors that progressively narrow the dataset without loading every city up front.',
+                'seo_title' => 'Laravel Country, State & City Selector — World',
+                'seo_description' => 'Build dependent country, state, and city selectors for Laravel, React, Angular, or Vue with accessible, copy-ready examples.',
                 'status' => 'Beta',
                 'preview' => 'location',
                 'endpoint' => '/api/states',
@@ -61,6 +63,8 @@ final class ComponentCatalog
             'currency-selector' => [
                 'title' => 'Currency selector',
                 'summary' => 'Choose a currency with its ISO code and native symbol, sourced from the World currency endpoint.',
+                'seo_title' => 'Laravel Currency Selector Component — World',
+                'seo_description' => 'Build a Laravel currency selector with ISO codes and native symbols for Blade, React, Angular, or Vue using the World API.',
                 'status' => 'Stable',
                 'preview' => 'currency',
                 'endpoint' => '/api/currencies',
@@ -84,6 +88,8 @@ final class ComponentCatalog
             'language-selector' => [
                 'title' => 'Language selector',
                 'summary' => 'Present language names in English and their native form, including text-direction metadata.',
+                'seo_title' => 'Laravel Language Selector Component — World',
+                'seo_description' => 'Build a Laravel language selector with native names, ISO codes, and text direction for Blade, React, Angular, or Vue.',
                 'status' => 'Stable',
                 'preview' => 'language',
                 'endpoint' => '/api/languages',
@@ -107,6 +113,8 @@ final class ComponentCatalog
             'timezone-selector' => [
                 'title' => 'Timezone selector',
                 'summary' => 'Select an IANA timezone from World’s normalized timezone dataset.',
+                'seo_title' => 'Laravel Timezone Selector Component — World',
+                'seo_description' => 'Build a searchable Laravel timezone selector using normalized IANA data, with examples for Blade, React, Angular, and Vue.',
                 'status' => 'Stable',
                 'preview' => 'timezone',
                 'endpoint' => '/api/timezones',

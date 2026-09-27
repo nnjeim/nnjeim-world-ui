@@ -1,5 +1,16 @@
 import { expect, test } from '@playwright/test';
 
+test('component library links to every documented selector', async ({ page }) => {
+    await page.goto('/components');
+
+    await expect(page.getByRole('heading', { name: 'Geographic UI components for Laravel and JavaScript.' })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Country selector/ })).toHaveAttribute('href', /\/components\/country-selector$/);
+    await expect(page.getByRole('link', { name: /Country, state, and city selector/ })).toHaveAttribute('href', /\/components\/location-selector$/);
+    await expect(page.getByRole('link', { name: /Currency selector/ })).toHaveAttribute('href', /\/components\/currency-selector$/);
+    await expect(page.getByRole('link', { name: /Language selector/ })).toHaveAttribute('href', /\/components\/language-selector$/);
+    await expect(page.getByRole('link', { name: /Timezone selector/ })).toHaveAttribute('href', /\/components\/timezone-selector$/);
+});
+
 const simpleComponents = [
     ['country-selector', '250 items loaded from the live API', 'Romania · RO · ID 181'],
     ['currency-selector', '250 items loaded from the live API', 'Euro · EUR · €'],

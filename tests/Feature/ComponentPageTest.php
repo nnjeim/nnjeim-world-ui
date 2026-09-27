@@ -7,11 +7,23 @@ use Tests\TestCase;
 
 class ComponentPageTest extends TestCase
 {
-    public function test_component_index_redirects_to_the_country_selector(): void
+    public function test_component_index_renders_the_component_library(): void
     {
         $response = $this->get('/components');
 
-        $response->assertRedirect('/components/country-selector');
+        $response
+            ->assertOk()
+            ->assertViewIs('components.index')
+            ->assertSeeText('Geographic UI components for Laravel and JavaScript.')
+            ->assertSeeTextInOrder([
+                'Country selector',
+                'Country, state, and city selector',
+                'Currency selector',
+                'Language selector',
+                'Timezone selector',
+            ])
+            ->assertSee('rel="canonical"', false)
+            ->assertSee('CollectionPage', false);
     }
 
     #[DataProvider('components')]
@@ -26,10 +38,12 @@ class ComponentPageTest extends TestCase
             ->assertOk()
             ->assertViewIs('components.show')
             ->assertViewHas('slug', $slug)
+            ->assertHeader('Cache-Control', 'max-age=300, public, s-maxage=3600, stale-while-revalidate=86400')
             ->assertSeeText($title)
             ->assertSeeText($endpoint)
             ->assertSeeTextInOrder(['Blade', 'React', 'Angular', 'Vue'])
             ->assertSeeText('Accessibility checklist')
+            ->assertSee('BreadcrumbList', false)
             ->assertSee('data-component-page="'.$slug.'"', false);
     }
 
