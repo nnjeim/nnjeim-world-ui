@@ -1,0 +1,20 @@
+name: Production smoke check
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check the landing page
+        run: |
+          curl --fail --silent --show-error --retry 3 https://world.bmbc.cloud/ | grep -F 'Start with a country selector.'
+
+      - name: Check the World API
+        run: |
+          curl --fail --silent --show-error --retry 3 'https://world.bmbc.cloud/api/countries?fields=iso2' | jq -e '.success == true and (.data | length) == 250'

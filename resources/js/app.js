@@ -1,3 +1,5 @@
+import './catalog';
+
 const snippets = {
     blade: {
         filename: 'country-select.blade.php',
