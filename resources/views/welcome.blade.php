@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="World is a Laravel package for countries, states, cities, currencies, timezones, languages, and IP geolocation.">
-    <meta name="theme-color" content="#08111f">
+    <meta name="theme-color" content="#f45143">
 
     <meta property="og:title" content="World for Laravel">
     <meta property="og:description" content="Production-ready geographic data with framework-friendly examples.">
@@ -19,6 +19,8 @@
 
     <link rel="canonical" href="{{ url('/') }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('favicon.ico') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -37,32 +39,35 @@
         ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
+<body class="brand-shell bg-white text-slate-900 antialiased selection:bg-[#f45143] selection:text-white">
     <div class="relative isolate overflow-hidden">
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[radial-gradient(circle_at_76%_8%,rgba(34,211,238,.18),transparent_32%),radial-gradient(circle_at_24%_22%,rgba(59,130,246,.16),transparent_30%)]"></div>
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[linear-gradient(to_right,rgba(148,163,184,.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,.055)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[radial-gradient(circle_at_76%_8%,rgba(244,81,67,.13),transparent_32%),radial-gradient(circle_at_24%_22%,rgba(251,146,60,.09),transparent_30%)]"></div>
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[linear-gradient(to_right,rgba(100,116,139,.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,116,139,.08)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
 
         <x-site-header :home="true" />
 
         <main id="top">
             <section class="mx-auto grid max-w-7xl items-center gap-16 px-5 pb-24 pt-20 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:pb-32 lg:pt-28">
                 <div>
-                    <a href="https://github.com/nnjeim/world/releases/tag/1.1.39" target="_blank" rel="noreferrer" class="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/8 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-300/12">
-                        <span class="size-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]"></span>
-                        Version 1.1.39 is available
-                        <span aria-hidden="true">→</span>
-                    </a>
+                    <div class="mb-7 flex items-center gap-4">
+                        <img src="{{ asset('brand/world-logo.jpg') }}" alt="World package logo" class="size-20 rounded-2xl border border-slate-200 bg-white object-cover shadow-lg shadow-[#f45143]/10 sm:size-24">
+                        <a href="https://github.com/nnjeim/world/releases/tag/1.1.39" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#f45143]/20 bg-[#f45143]/8 px-3 py-1.5 text-xs font-medium text-[#d83f33] transition hover:bg-[#f45143]/12">
+                            <span class="size-1.5 rounded-full bg-[#f45143] shadow-[0_0_12px_rgba(244,81,67,.55)]"></span>
+                            Version 1.1.39 is available
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
 
                     <h1 class="max-w-3xl text-5xl font-semibold leading-[1.03] tracking-[-.045em] text-white sm:text-6xl lg:text-7xl">
                         The world,<br>
-                        <span class="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">ready for your UI.</span>
+                        <span class="text-[#f45143]">ready for your UI.</span>
                     </h1>
                     <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
                         Countries, states, cities, currencies, timezones, languages, and IP geolocation—packaged for Laravel and exposed through a clean API.
                     </p>
 
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-                        <a href="#components" class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/15 transition hover:bg-cyan-200">
+                        <a href="#components" class="brand-primary inline-flex items-center justify-center gap-2 rounded-xl bg-[#f45143] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#f45143]/20 transition hover:bg-[#df4438]">
                             Explore the components
                             <span aria-hidden="true">↓</span>
                         </a>
@@ -71,7 +76,7 @@
                         </a>
                     </div>
 
-                    <div class="mt-10 max-w-xl overflow-hidden rounded-xl border border-white/10 bg-slate-900/75 shadow-2xl shadow-black/20">
+                    <div class="code-panel mt-10 max-w-xl overflow-hidden rounded-xl border border-slate-800 bg-slate-950 shadow-2xl shadow-slate-900/20">
                         <div class="flex items-center justify-between border-b border-white/8 px-4 py-2.5">
                             <span class="text-xs font-medium text-slate-400">Terminal</span>
                             <button type="button" data-copy-text="composer require nnjeim/world" class="copy-action inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-slate-400 transition hover:bg-white/8 hover:text-white" aria-label="Copy installation command">
@@ -87,8 +92,8 @@
                 </div>
 
                 <div class="relative mx-auto w-full max-w-xl lg:mx-0 lg:ml-auto">
-                    <div class="absolute -inset-8 -z-10 rounded-full bg-cyan-400/10 blur-3xl"></div>
-                    <div class="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/90 shadow-2xl shadow-black/40 ring-1 ring-white/5">
+                    <div class="absolute -inset-8 -z-10 rounded-full bg-[#f45143]/10 blur-3xl"></div>
+                    <div class="code-panel overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl shadow-slate-900/25 ring-1 ring-slate-900/5">
                         <div class="flex items-center justify-between border-b border-white/8 px-5 py-4">
                             <div class="flex items-center gap-2">
                                 <span class="size-2.5 rounded-full bg-rose-400/80"></span>
@@ -177,7 +182,7 @@
 
                     <div class="grid lg:grid-cols-2">
                         <div class="relative min-h-[34rem] border-b border-white/8 bg-slate-100 p-5 text-slate-900 sm:p-10 lg:border-b-0 lg:border-r lg:border-white/8">
-                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,.13),transparent_35%),linear-gradient(to_right,rgba(15,23,42,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,.045)_1px,transparent_1px)] bg-[size:auto,24px_24px,24px_24px]"></div>
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,81,67,.09),transparent_35%),linear-gradient(to_right,rgba(15,23,42,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,.045)_1px,transparent_1px)] bg-[size:auto,24px_24px,24px_24px]"></div>
                             <div class="relative mx-auto max-w-md">
                                 <div class="mb-8 flex items-center justify-between">
                                     <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm ring-1 ring-slate-200">Live preview</span>
@@ -220,7 +225,7 @@
                             </div>
                         </div>
 
-                        <div class="flex min-h-[34rem] min-w-0 flex-col bg-[#08111f]">
+                        <div class="code-panel flex min-h-[34rem] min-w-0 flex-col bg-[#151a23]">
                             <div class="flex items-center justify-between border-b border-white/8 px-5 py-3.5">
                                 <div class="flex min-w-0 items-center gap-3">
                                     <span class="size-2 rounded-full bg-cyan-300"></span>
@@ -268,13 +273,13 @@
             </section>
 
             <section class="mx-auto max-w-7xl px-5 py-24 text-center sm:px-8 lg:py-32">
-                <div class="relative overflow-hidden rounded-3xl border border-cyan-300/15 bg-gradient-to-br from-cyan-300/12 via-blue-400/8 to-transparent px-6 py-16 sm:px-12">
-                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(103,232,249,.16),transparent_48%)]"></div>
+                <div class="relative overflow-hidden rounded-3xl border border-[#f45143]/20 bg-gradient-to-br from-[#f45143]/10 via-orange-100/60 to-white px-6 py-16 sm:px-12">
+                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(244,81,67,.13),transparent_48%)]"></div>
                     <div class="relative">
                         <p class="text-sm font-semibold text-cyan-300">Build globally from day one</p>
                         <h2 class="mx-auto mt-4 max-w-2xl text-4xl font-semibold tracking-[-.035em] text-white sm:text-5xl">Add World to your next Laravel application.</h2>
                         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                            <button type="button" data-copy-text="composer require nnjeim/world" class="copy-action inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+                            <button type="button" data-copy-text="composer require nnjeim/world" class="brand-primary copy-action inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
                                 <span data-copy-label>Copy install command</span>
                             </button>
                             <a href="https://packagist.org/packages/nnjeim/world" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">View on Packagist</a>

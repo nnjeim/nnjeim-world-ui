@@ -19,6 +19,8 @@ class LandingPageTest extends TestCase
             ->assertSeeTextInOrder(['Blade', 'React', 'Angular', 'Vue'])
             ->assertSeeText('Browse component docs')
             ->assertSee('data-country-selector', false)
+            ->assertSee('brand/world-logo.jpg', false)
+            ->assertSee('favicon.svg', false)
             ->assertSee('application/ld+json', false)
             ->assertSee('composer require nnjeim/world');
     }

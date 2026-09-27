@@ -1,13 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="World">
-    <defs>
-        <linearGradient id="background" x1="8" y1="5" x2="56" y2="59" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#67E8F9" />
-            <stop offset="1" stop-color="#3B82F6" />
-        </linearGradient>
-    </defs>
-    <rect width="64" height="64" rx="18" fill="url(#background)" />
-    <g fill="none" stroke="#08111F" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
-        <circle cx="32" cy="32" r="20" />
-        <path d="M12.8 25h38.4M12.8 39h38.4M32 12c5.2 5.3 7.6 11.9 7.6 20S37.2 46.7 32 52c-5.2-5.3-7.6-11.9-7.6-20S26.8 17.3 32 12Z" />
+    <rect width="64" height="64" rx="14" fill="#fff" />
+    <g fill="none" stroke="#f45143" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
+        <path d="M13 46V14L29 5l16 9v14" />
+        <path d="m13 14 16 9 16-9M29 23v24l15 9 14-8V34l-12-7" />
+        <path d="m29 47 15 9V41" />
     </g>
+    <path d="M13 25h17l4.8 16 4-11h5.3l4.2 11L53 30h7l-9 20h-6l-3.8-9.3L37.8 50h-7L25 31H13z" fill="#f45143" />
 </svg>

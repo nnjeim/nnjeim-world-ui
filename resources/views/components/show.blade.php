@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $component['summary'] }}">
-    <meta name="theme-color" content="#08111f">
+    <meta name="theme-color" content="#f45143">
 
     <meta property="og:title" content="{{ $component['title'] }} — World components">
     <meta property="og:description" content="{{ $component['summary'] }}">
@@ -17,6 +17,8 @@
 
     <link rel="canonical" href="{{ route('components.show', $slug) }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('favicon.ico') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -36,9 +38,9 @@
         ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
+<body class="brand-shell bg-white text-slate-900 antialiased selection:bg-[#f45143] selection:text-white">
     <div class="relative isolate min-h-screen overflow-hidden">
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem] bg-[radial-gradient(circle_at_76%_8%,rgba(34,211,238,.14),transparent_32%),radial-gradient(circle_at_24%_18%,rgba(59,130,246,.12),transparent_30%)]"></div>
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem] bg-[radial-gradient(circle_at_76%_8%,rgba(244,81,67,.12),transparent_32%),radial-gradient(circle_at_24%_18%,rgba(251,146,60,.08),transparent_30%)]"></div>
         <x-site-header />
 
         <main data-component-page="{{ $slug }}">
@@ -128,7 +130,7 @@
 
                             <div class="grid lg:grid-cols-[.85fr_1.15fr]">
                                 <div class="relative min-h-[30rem] border-b border-white/8 bg-slate-100 p-5 text-slate-900 sm:p-8 lg:border-b-0 lg:border-r lg:border-white/8">
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,.13),transparent_35%),linear-gradient(to_right,rgba(15,23,42,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,.045)_1px,transparent_1px)] bg-[size:auto,24px_24px,24px_24px]"></div>
+                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,81,67,.09),transparent_35%),linear-gradient(to_right,rgba(15,23,42,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,.045)_1px,transparent_1px)] bg-[size:auto,24px_24px,24px_24px]"></div>
                                     <div class="relative mx-auto max-w-md">
                                         <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm ring-1 ring-slate-200">Live preview</span>
 
@@ -164,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex min-h-[30rem] min-w-0 flex-col bg-[#08111f]">
+                                <div class="code-panel flex min-h-[30rem] min-w-0 flex-col bg-[#151a23]">
                                     <div class="flex items-center justify-between border-b border-white/8 px-5 py-3.5">
                                         <div class="flex min-w-0 items-center gap-3">
                                             <span class="size-2 rounded-full bg-cyan-300"></span>

@@ -8,6 +8,14 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-cyan-50: #fff2f0;
+    --color-cyan-200: #ffb7b0;
+    --color-cyan-300: #f45143;
+    --color-cyan-400: #ea493c;
+    --color-cyan-500: #d83f33;
+    --color-sky-300: #f9786d;
+    --color-blue-400: #ef5d50;
+    --color-blue-500: #d83f33;
 }
 
 @layer base {
@@ -17,19 +25,128 @@
     }
 }
 
-@layer components {
-    .framework-tab {
+.brand-shell [class~='bg-slate-950'],
+    .brand-shell [class~='bg-slate-950/80'],
+    .brand-shell [class~='bg-slate-950/60'],
+    .brand-shell [class~='bg-slate-950/55'],
+    .brand-shell [class~='bg-slate-900/95'],
+    .brand-shell [class~='bg-slate-900/90'],
+    .brand-shell [class~='bg-slate-900/75'],
+    .brand-shell [class~='bg-slate-900/70'],
+    .brand-shell [class~='bg-slate-900/65'],
+    .brand-shell [class~='bg-slate-900/60'],
+    .brand-shell [class~='bg-slate-900/35'],
+    .brand-shell [class~='bg-white/[.025]'],
+    .brand-shell [class~='bg-white/[.02]'],
+    .brand-shell [class~='bg-white/5'],
+    .brand-shell [class~='bg-white/4'] {
+        background-color: rgb(255 255 255 / 92%);
+    }
+
+    .brand-shell [class~='border-white/8'],
+    .brand-shell [class~='border-white/10'],
+    .brand-shell [class~='border-white/12'] {
+        border-color: var(--color-slate-200);
+    }
+
+    .brand-shell [class~='divide-white/8'] > :not(:last-child) {
+        border-color: var(--color-slate-200);
+    }
+
+    .brand-shell [class~='ring-white/5'] {
+        --tw-ring-color: rgb(226 232 240 / 70%);
+    }
+
+    .brand-shell .text-white,
+    .brand-shell .text-slate-100 {
+        color: var(--color-slate-950);
+    }
+
+    .brand-shell .text-slate-200,
+    .brand-shell .text-slate-300 {
+        color: var(--color-slate-700);
+    }
+
+    .brand-shell .text-slate-400 {
+        color: var(--color-slate-600);
+    }
+
+    .brand-shell .text-slate-500,
+    .brand-shell .text-slate-600 {
+        color: var(--color-slate-500);
+    }
+
+    .brand-shell .hover\:text-white:hover,
+    .brand-shell .group:hover .group-hover\:text-white {
+        color: #f45143;
+    }
+
+    .brand-shell .code-panel,
+    .brand-shell .code-panel[class~='bg-slate-950'],
+    .brand-shell .code-panel [class~='bg-slate-950/60'] {
+        background-color: #151a23;
+    }
+
+    .brand-shell .code-panel [class~='bg-white/5'] {
+        background-color: rgb(255 255 255 / 5%);
+    }
+
+    .brand-shell .code-panel [class~='border-white/8'],
+    .brand-shell .code-panel [class~='border-white/10'] {
+        border-color: rgb(255 255 255 / 10%);
+    }
+
+    .brand-shell .code-panel .text-white,
+    .brand-shell .code-panel .text-slate-100 {
+        color: var(--color-white);
+    }
+
+    .brand-shell .code-panel .text-slate-200,
+    .brand-shell .code-panel .text-slate-300 {
+        color: var(--color-slate-200);
+    }
+
+    .brand-shell .code-panel .text-slate-400 {
         color: var(--color-slate-400);
     }
 
+    .brand-shell .code-panel .text-slate-500 {
+        color: var(--color-slate-500);
+    }
+
+.brand-shell .code-panel .hover\:text-white:hover {
+    color: var(--color-white);
+}
+
+.brand-shell .brand-primary {
+    color: var(--color-white);
+}
+
+@layer components {
+    .framework-tab {
+        color: var(--color-slate-600);
+    }
+
     .framework-tab:hover {
-        color: var(--color-slate-100);
+        color: #d83f33;
     }
 
     .framework-tab.is-active {
-        background: color-mix(in srgb, var(--color-white) 10%, transparent);
+        background: #f45143;
         color: var(--color-white);
-        box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+        box-shadow: 0 1px 3px rgb(244 81 67 / 24%);
+    }
+
+    .code-panel .framework-tab {
+        color: var(--color-slate-400);
+    }
+
+    .code-panel .framework-tab:hover {
+        color: var(--color-white);
+    }
+
+    .code-panel .framework-tab.is-active {
+        color: var(--color-white);
     }
 
     .country-option {
