@@ -6,6 +6,8 @@
 .vscode
 database/*.sqlite*
 node_modules
+playwright-report
 public/build
 storage/logs/*.log
+test-results
 vendor

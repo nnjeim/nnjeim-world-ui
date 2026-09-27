@@ -17,7 +17,9 @@ class LandingPageTest extends TestCase
             ->assertSeeText('Version 1.1.39 is available')
             ->assertSeeText('Start with a country selector.')
             ->assertSeeTextInOrder(['Blade', 'React', 'Angular', 'Vue'])
+            ->assertSeeText('Browse component docs')
             ->assertSee('data-country-selector', false)
+            ->assertSee('application/ld+json', false)
             ->assertSee('composer require nnjeim/world');
     }
 }

@@ -15,6 +15,9 @@ FROM composer:2 AS composer
 
 FROM php:8.4-apache-bookworm
 
+ENV CACHE_STORE=file \
+    SESSION_DRIVER=file
+
 RUN apt-get update \
     && apt-get install --no-install-recommends --yes unzip \
     && a2enmod headers rewrite \
@@ -22,6 +25,7 @@ RUN apt-get update \
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 COPY docker/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/servername.conf /etc/apache2/conf-enabled/servername.conf
 
 WORKDIR /var/www/html
 

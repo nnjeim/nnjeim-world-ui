@@ -10,41 +10,39 @@
     <meta property="og:description" content="Production-ready geographic data with framework-friendly examples.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="{{ asset('og/world-ui.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 
     <title>World — Geographic data for Laravel</title>
 
+    <link rel="canonical" href="{{ url('/') }}">
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'SoftwareApplication',
+            'name' => 'World for Laravel',
+            'applicationCategory' => 'DeveloperApplication',
+            'operatingSystem' => 'Any',
+            'softwareVersion' => '1.1.39',
+            'url' => url('/'),
+            'codeRepository' => 'https://github.com/nnjeim/world',
+            'license' => 'https://opensource.org/licenses/MIT',
+        ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
     <div class="relative isolate overflow-hidden">
         <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[radial-gradient(circle_at_76%_8%,rgba(34,211,238,.18),transparent_32%),radial-gradient(circle_at_24%_22%,rgba(59,130,246,.16),transparent_30%)]"></div>
         <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[46rem] bg-[linear-gradient(to_right,rgba(148,163,184,.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,.055)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
 
-        <header class="sticky top-0 z-50 border-b border-white/8 bg-slate-950/80 backdrop-blur-xl">
-            <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Primary navigation">
-                <a href="#top" class="group flex items-center gap-3" aria-label="World home">
-                    <span class="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-cyan-300 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/15 transition-transform group-hover:-rotate-6">
-                        <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <circle cx="12" cy="12" r="8.5" />
-                            <path d="M3.8 9h16.4M3.8 15h16.4M12 3.5c2.2 2.3 3.2 5.1 3.2 8.5s-1 6.2-3.2 8.5c-2.2-2.3-3.2-5.1-3.2-8.5S9.8 5.8 12 3.5Z" />
-                        </svg>
-                    </span>
-                    <span class="text-lg font-semibold tracking-tight">World</span>
-                </a>
-
-                <div class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-                    <a href="#overview" class="transition hover:text-white">Overview</a>
-                    <a href="#components" class="transition hover:text-white">Components</a>
-                    <a href="#api" class="transition hover:text-white">API</a>
-                </div>
-
-                <a href="https://github.com/nnjeim/world" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium transition hover:border-white/20 hover:bg-white/10" target="_blank" rel="noreferrer">
-                    <svg viewBox="0 0 24 24" class="size-4" fill="currentColor" aria-hidden="true"><path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.2.8-.5v-2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6A4.7 4.7 0 0 1 5.8 8c-.1-.3-.5-1.6.1-3.4 0 0 1-.3 3.7 1.3a12.7 12.7 0 0 1 6.7 0C19 4.3 20 4.6 20 4.6c.7 1.8.3 3.1.2 3.4a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.1c0 .3.2.6.8.5A11.4 11.4 0 0 0 12 .8Z"/></svg>
-                    <span class="hidden sm:inline">GitHub</span>
-                </a>
-            </nav>
-        </header>
+        <x-site-header :home="true" />
 
         <main id="top">
             <section class="mx-auto grid max-w-7xl items-center gap-16 px-5 pb-24 pt-20 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:pb-32 lg:pt-28">
@@ -68,8 +66,8 @@
                             Explore the components
                             <span aria-hidden="true">↓</span>
                         </a>
-                        <a href="https://github.com/nnjeim/world#installation" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                            Read the documentation
+                        <a href="{{ route('components.index') }}" class="inline-flex items-center justify-center rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+                            Browse component docs
                         </a>
                     </div>
 
@@ -286,16 +284,7 @@
             </section>
         </main>
 
-        <footer class="border-t border-white/8">
-            <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-                <p>World is open source software licensed under the MIT license.</p>
-                <div class="flex gap-5">
-                    <a href="https://github.com/nnjeim/world" target="_blank" rel="noreferrer" class="transition hover:text-white">GitHub</a>
-                    <a href="https://packagist.org/packages/nnjeim/world" target="_blank" rel="noreferrer" class="transition hover:text-white">Packagist</a>
-                    <a href="https://github.com/nnjeim/world/releases" target="_blank" rel="noreferrer" class="transition hover:text-white">Releases</a>
-                </div>
-            </div>
-        </footer>
+        <x-site-footer />
     </div>
 </body>
 </html>
