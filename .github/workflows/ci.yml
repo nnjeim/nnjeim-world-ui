@@ -47,11 +47,11 @@ jobs:
           touch database/database.sqlite
           php artisan world:install --no-interaction
 
-      - name: Run Laravel tests
-        run: php artisan test --compact
-
       - name: Build frontend assets
         run: npm run build
+
+      - name: Run Laravel tests
+        run: php artisan test --compact
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
