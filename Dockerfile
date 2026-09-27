@@ -1,3 +1,16 @@
+FROM node:22-alpine AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+RUN npm ci --no-audit --no-fund
+
+COPY resources ./resources
+COPY vite.config.js ./
+
+RUN npm run build
+
 FROM composer:2 AS composer
 
 FROM php:8.4-apache-bookworm
@@ -13,6 +26,7 @@ COPY docker/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
 WORKDIR /var/www/html
 
 COPY . .
+COPY --from=frontend /app/public/build ./public/build
 
 RUN composer install \
         --classmap-authoritative \

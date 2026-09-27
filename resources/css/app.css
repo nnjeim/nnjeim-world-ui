@@ -2,8 +2,61 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    :focus-visible {
+        outline: 2px solid var(--color-cyan-300);
+        outline-offset: 3px;
+    }
+}
+
+@layer components {
+    .framework-tab {
+        color: var(--color-slate-400);
+    }
+
+    .framework-tab:hover {
+        color: var(--color-slate-100);
+    }
+
+    .framework-tab.is-active {
+        background: color-mix(in srgb, var(--color-white) 10%, transparent);
+        color: var(--color-white);
+        box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+    }
+
+    .country-option {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 0.75rem;
+        border-radius: 0.625rem;
+        padding: 0.625rem 0.75rem;
+        text-align: left;
+        font-size: 0.875rem;
+        color: var(--color-slate-700);
+        transition: background-color 120ms ease, color 120ms ease;
+    }
+
+    .country-option:hover,
+    .country-option.is-highlighted {
+        background: var(--color-cyan-50);
+        color: var(--color-slate-950);
+    }
+
+    .country-option.is-selected {
+        font-weight: 600;
+    }
+}
+
+.code-window {
+    scrollbar-color: rgb(51 65 85) transparent;
+    scrollbar-width: thin;
 }

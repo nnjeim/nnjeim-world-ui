@@ -6,6 +6,6 @@
 .vscode
 database/*.sqlite*
 node_modules
+public/build
 storage/logs/*.log
 vendor
-
