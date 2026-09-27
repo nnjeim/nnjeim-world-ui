@@ -37,15 +37,15 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Check PHP formatting
+        run: vendor/bin/pint --test
+
       - name: Prepare the application
         run: |
           cp .env.example .env
           php artisan key:generate
           touch database/database.sqlite
           php artisan world:install --no-interaction
-
-      - name: Check PHP formatting
-        run: vendor/bin/pint --test
 
       - name: Run Laravel tests
         run: php artisan test --compact
