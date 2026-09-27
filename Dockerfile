@@ -3,11 +3,7 @@ FROM composer:2 AS composer
 FROM php:8.4-apache-bookworm
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends --yes \
-        libonig-dev \
-        libsqlite3-dev \
-        unzip \
-    && docker-php-ext-install -j"$(nproc)" mbstring opcache pdo_sqlite \
+    && apt-get install --no-install-recommends --yes unzip \
     && a2enmod headers rewrite \
     && rm -rf /var/lib/apt/lists/*
 
