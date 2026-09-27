@@ -2,6 +2,10 @@
 
 return [
 
+    'public_ip' => [
+        'url' => env('PUBLIC_IP_RESOLVER_URL', 'https://api.ipify.org'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
