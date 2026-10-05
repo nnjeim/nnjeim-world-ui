@@ -17,6 +17,8 @@ class LandingPageTest extends TestCase
             ->assertSeeText('The world,')
             ->assertSeeText('Version 1.1.39 is available')
             ->assertSeeText('Start with a country selector.')
+            ->assertSeeText('API activity')
+            ->assertSee('data-api-usage', false)
             ->assertSeeTextInOrder(['Blade', 'React', 'Angular', 'Vue'])
             ->assertSeeText('Browse component docs')
             ->assertSee('data-country-selector', false)

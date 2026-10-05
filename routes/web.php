@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiUsageController;
 use App\Http\Controllers\ComponentController;
 use App\Support\ComponentCatalog;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -16,6 +17,12 @@ $publicPageCache = SetCacheHeaders::using([
     's_maxage' => 3600,
     'stale_while_revalidate' => 86400,
     'etag' => true,
+]);
+
+$apiUsageCache = SetCacheHeaders::using([
+    'public' => true,
+    'max_age' => 300,
+    's_maxage' => 300,
 ]);
 
 $statefulWebMiddleware = [
@@ -38,3 +45,8 @@ Route::middleware($publicPageCache)
         Route::get('/components/{component}', ComponentController::class)
             ->name('components.show');
     });
+
+Route::get('/api-usage', ApiUsageController::class)
+    ->middleware($apiUsageCache)
+    ->withoutMiddleware($statefulWebMiddleware)
+    ->name('api-usage.show');

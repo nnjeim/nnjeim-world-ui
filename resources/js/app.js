@@ -394,3 +394,51 @@ if (selector) {
             status.textContent = 'The live API is temporarily unavailable';
         });
 }
+
+const apiUsage = document.querySelector('[data-api-usage]');
+
+if (apiUsage) {
+    const requests = apiUsage.querySelector('[data-api-usage-requests]');
+    const success = apiUsage.querySelector('[data-api-usage-success]');
+    const latency = apiUsage.querySelector('[data-api-usage-latency]');
+    const chart = apiUsage.querySelector('[data-api-usage-chart]');
+    const status = apiUsage.querySelector('[data-api-usage-status]');
+
+    fetch(apiUsage.dataset.url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('API activity request failed');
+            }
+
+            return response.json();
+        })
+        .then((data) => {
+            requests.textContent = new Intl.NumberFormat('en').format(data.requests);
+            success.textContent = data.success_rate_percent === null ? '—' : `${data.success_rate_percent}%`;
+            latency.textContent = data.p95_latency_overflow
+                ? '>6.4 s'
+                : data.p95_latency_ms === null
+                  ? '—'
+                  : `≤${new Intl.NumberFormat('en').format(data.p95_latency_ms)} ms`;
+
+            const highest = Math.max(...data.daily.map((day) => day.requests), 1);
+            const bars = data.daily.map((day) => {
+                const bar = document.createElement('span');
+                bar.className = day.requests
+                    ? 'min-w-0 flex-1 rounded-t-sm bg-[#f45143]/75'
+                    : 'min-w-0 flex-1 rounded-t-sm bg-slate-200';
+                bar.style.height = day.requests ? `${Math.max(6, (day.requests / highest) * 100)}%` : '2px';
+                bar.title = `${day.date}: ${day.requests} requests`;
+
+                return bar;
+            });
+
+            chart.replaceChildren(...bars);
+            status.textContent = data.requests === 0
+                ? 'Collecting activity from this hosted API.'
+                : `Updated ${new Date(data.updated_at).toLocaleString('en', { timeZone: 'UTC', dateStyle: 'medium', timeStyle: 'short' })} UTC`;
+        })
+        .catch(() => {
+            status.textContent = 'API activity is temporarily unavailable.';
+        });
+}

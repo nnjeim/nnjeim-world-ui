@@ -185,6 +185,40 @@
                 </div>
             </section>
 
+            <section class="mx-auto max-w-7xl px-5 pt-16 sm:px-8" aria-labelledby="api-activity-heading">
+                <div data-api-usage data-url="{{ route('api-usage.show') }}" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5">
+                    <div class="flex flex-col gap-2 border-b border-slate-200 px-6 py-6 sm:px-8">
+                        <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#d83f33]">Live demo API</p>
+                        <h2 id="api-activity-heading" class="text-2xl font-semibold tracking-tight text-slate-950">API activity</h2>
+                        <p class="text-sm leading-6 text-slate-600">Calls served by this hosted API, including the examples on this site. Last 30 days, UTC.</p>
+                    </div>
+
+                    <div class="grid divide-y divide-slate-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                        <div class="px-6 py-6 sm:px-8">
+                            <p class="text-sm text-slate-600">Requests</p>
+                            <p data-api-usage-requests class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">—</p>
+                        </div>
+                        <div class="px-6 py-6 sm:px-8">
+                            <p class="text-sm text-slate-600">Successful responses</p>
+                            <p data-api-usage-success class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">—</p>
+                        </div>
+                        <div class="px-6 py-6 sm:px-8">
+                            <p class="text-sm text-slate-600">P95 response time</p>
+                            <p data-api-usage-latency class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">—</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-200 px-6 py-6 sm:px-8">
+                        <div class="flex items-center justify-between gap-4 text-xs font-medium text-slate-500">
+                            <span>Daily requests</span>
+                            <span>30 days · UTC</span>
+                        </div>
+                        <div data-api-usage-chart role="img" aria-label="Daily API requests for the last 30 days" class="mt-4 flex h-20 items-end gap-1"></div>
+                        <p data-api-usage-status class="mt-4 text-xs text-slate-500" aria-live="polite">Loading API activity…</p>
+                    </div>
+                </div>
+            </section>
+
             <section id="components" class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
                 <div class="max-w-3xl">
                     <p class="text-sm font-semibold uppercase tracking-[.18em] text-cyan-300">Component library</p>
