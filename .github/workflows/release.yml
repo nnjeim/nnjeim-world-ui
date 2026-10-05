@@ -12,6 +12,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: world-ui-release
+  cancel-in-progress: false
+
 jobs:
   image:
     runs-on: ubuntu-latest
@@ -54,7 +58,7 @@ jobs:
   deploy:
     if: ${{ inputs.deploy }}
     needs: image
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, world-ui-deploy]
     timeout-minutes: 15
     environment: production
 
@@ -69,14 +73,9 @@ jobs:
           token: ${{ secrets.CLUSTER_REPO_TOKEN }}
           path: cluster
 
-      - name: Prepare release metadata and kubeconfig
-        env:
-          KUBE_CONFIG_B64: ${{ secrets.KUBE_CONFIG_B64 }}
+      - name: Prepare release metadata
         run: |
           echo "IMAGE_TAG=$(git rev-parse --short=7 HEAD)" >> "$GITHUB_ENV"
-          printf '%s' "$KUBE_CONFIG_B64" | base64 --decode > "$RUNNER_TEMP/world-kubeconfig"
-          chmod 600 "$RUNNER_TEMP/world-kubeconfig"
-          echo "KUBECONFIG=$RUNNER_TEMP/world-kubeconfig" >> "$GITHUB_ENV"
 
       - name: Update the manifest source of truth
         run: |
@@ -93,6 +92,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.CLUSTER_REPO_TOKEN }}
         run: |
+          if git -C cluster diff --quiet -- world-ui/world-ui.deployment.yaml; then
+            echo "Cluster manifest already points to this release."
+            exit 0
+          fi
           branch="world/release-${IMAGE_TAG}"
           git -C cluster config user.name "world-ui-release"
           git -C cluster config user.email "world-ui-release@users.noreply.github.com"

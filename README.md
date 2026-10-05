@@ -77,6 +77,5 @@ The release workflow requires the following production configuration:
 | `HARBOR_USERNAME` | Harbor registry login |
 | `HARBOR_PASSWORD` | Harbor registry password |
 | `CLUSTER_REPO_TOKEN` | Push a manifest branch and open its pull request |
-| `KUBE_CONFIG_B64` | Base64-encoded production kubeconfig |
 
-The deploy job also requires a production self-hosted runner with `kubectl`, `curl`, `jq`, Git, and GitHub CLI installed. Protect the `production` GitHub environment with the desired approval policy. No production credentials are stored in this repository.
+The deploy job uses the `world-ui-deploy` runner in the World namespace, with `kubectl`, `curl`, `jq`, Git, and GitHub CLI installed. It authenticates to Kubernetes through its service account, whose permissions are limited to the World UI deployment and rollout observation. Runner manifests live in `home-k8s/world-ui`. No production credentials are stored in this repository.
