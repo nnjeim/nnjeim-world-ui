@@ -9,6 +9,7 @@
 
         <div class="hidden items-center gap-8 text-sm text-slate-600 md:flex">
             <a href="{{ route('home') }}#overview" class="transition hover:text-[#f45143]">Overview</a>
+            <a href="{{ route('home') }}#activity" class="transition hover:text-[#f45143]">Activity</a>
             <a href="{{ route('components.index') }}" class="transition hover:text-[#f45143] {{ request()->routeIs('components.*') ? 'text-[#f45143]' : '' }}">Components</a>
             <a href="{{ route('home') }}#api" class="transition hover:text-[#f45143]">API</a>
         </div>

@@ -185,7 +185,7 @@
                 </div>
             </section>
 
-            <section class="mx-auto max-w-7xl px-5 pt-16 sm:px-8" aria-labelledby="api-activity-heading">
+            <section id="activity" class="mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8" aria-labelledby="api-activity-heading">
                 <div data-api-usage data-url="{{ route('api-usage.show') }}" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/5">
                     <div class="flex flex-col gap-2 border-b border-slate-200 px-6 py-6 sm:px-8">
                         <p class="text-xs font-semibold uppercase tracking-[.18em] text-[#d83f33]">Live demo API</p>

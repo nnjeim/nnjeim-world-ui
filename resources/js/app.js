@@ -404,7 +404,7 @@ if (apiUsage) {
     const chart = apiUsage.querySelector('[data-api-usage-chart]');
     const status = apiUsage.querySelector('[data-api-usage-status]');
 
-    fetch(apiUsage.dataset.url)
+    const loadApiUsage = () => fetch(apiUsage.dataset.url)
         .then((response) => {
             if (!response.ok) {
                 throw new Error('API activity request failed');
@@ -441,4 +441,18 @@ if (apiUsage) {
         .catch(() => {
             status.textContent = 'API activity is temporarily unavailable.';
         });
+
+    loadApiUsage();
+
+    window.setInterval(() => {
+        if (!document.hidden) {
+            loadApiUsage();
+        }
+    }, 300_000);
+
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            loadApiUsage();
+        }
+    });
 }
