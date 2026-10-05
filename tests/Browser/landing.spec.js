@@ -5,6 +5,7 @@ test('country selector filters, selects, switches framework, and copies code', a
 
     await expect(page.getByRole('heading', { name: 'The world, ready for your UI.' })).toBeVisible();
     await expect(page.getByText('250 countries loaded')).toBeVisible();
+    await expect(page.locator('[data-api-usage-chart] span')).toHaveCount(30);
 
     const countrySearch = page.getByRole('combobox', { name: 'Country' });
     await countrySearch.fill('Japan');
