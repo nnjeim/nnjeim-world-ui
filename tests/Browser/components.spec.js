@@ -84,3 +84,37 @@ test('component setup distinguishes World 2.0 from existing 1.x installations', 
     await expect(page.getByRole('link', { name: '2.0 upgrade guide' })).toHaveAttribute('href', /docs\/2\.0\/UPGRADE\.md$/);
     await expect(page.getByRole('link', { name: '1.x documentation' }).first()).toHaveAttribute('href', /docs\/1\.x\/README\.md$/);
 });
+
+test('search respects filters for countries, currencies, and languages', async ({ request }) => {
+    const franceResponse = await request.get('/api/countries?fields=iso2&filters[iso2]=FR');
+    expect(franceResponse.ok()).toBeTruthy();
+    const france = (await franceResponse.json()).data[0];
+    expect(france.iso2).toBe('FR');
+
+    const cases = [
+        { module: 'countries', fields: 'iso2', filters: { iso2: 'FR' }, excludedSearch: 'Germany', includedSearches: ['FR', 'France'], expected: { iso2: 'FR' } },
+        { module: 'currencies', fields: 'country_id,code', filters: { country_id: france.id }, excludedSearch: 'USD', includedSearches: ['EUR', 'Euro'], expected: { country_id: france.id, code: 'EUR' } },
+        { module: 'languages', fields: 'code', filters: { code: 'fr' }, excludedSearch: 'German', includedSearches: ['fr', 'French'], expected: { code: 'fr' } },
+    ];
+
+    for (const { module, fields, filters, excludedSearch, includedSearches, expected } of cases) {
+        const query = new URLSearchParams({ fields });
+        for (const [field, value] of Object.entries(filters)) {
+            query.set(`filters[${field}]`, value);
+        }
+
+        query.set('search', excludedSearch);
+        const excludedResponse = await request.get(`/api/${module}?${query}`);
+        expect(excludedResponse.ok()).toBeTruthy();
+        expect((await excludedResponse.json()).data).toEqual([]);
+
+        for (const search of [...includedSearches, '']) {
+            query.set('search', search);
+            const includedResponse = await request.get(`/api/${module}?${query}`);
+            expect(includedResponse.ok()).toBeTruthy();
+            const { data } = await includedResponse.json();
+            expect(data).toHaveLength(1);
+            expect(data[0]).toMatchObject(expected);
+        }
+    }
+});

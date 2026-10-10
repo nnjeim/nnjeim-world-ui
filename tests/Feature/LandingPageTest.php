@@ -8,7 +8,7 @@ class LandingPageTest extends TestCase
 {
     public function test_landing_page_presents_the_package_and_component_showcase(): void
     {
-        config(['world_ui.package_version' => '2.0.0', 'world_ui.release_preview' => false]);
+        config(['world_ui.package_version' => '2.0.1', 'world_ui.release_preview' => false]);
 
         $response = $this->get('/');
 
@@ -17,7 +17,7 @@ class LandingPageTest extends TestCase
             ->assertViewIs('welcome')
             ->assertHeader('Cache-Control', 'max-age=300, public, s-maxage=3600, stale-while-revalidate=86400')
             ->assertSeeText('The world,')
-            ->assertSeeText('Version 2.0.0 is available')
+            ->assertSeeText('Version 2.0.1 is available')
             ->assertSeeText('Start with a country selector.')
             ->assertSeeText('API activity')
             ->assertSee('data-api-usage', false)

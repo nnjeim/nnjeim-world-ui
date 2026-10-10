@@ -9,7 +9,7 @@ The site introduces the package, exercises its live API, and provides copy-ready
 - PHP 8.4
 - Laravel 13
 - Tailwind CSS 4 and Vite 8
-- `nnjeim/world` 2.0.0
+- `nnjeim/world` 2.0.1
 
 ## Local development
 
