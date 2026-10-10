@@ -37,7 +37,7 @@ jobs:
 
       - name: Generate image tags
         id: metadata
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: harbor.bmbc.cloud/library/world-ui
           tags: |
