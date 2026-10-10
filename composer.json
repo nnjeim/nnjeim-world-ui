@@ -9,7 +9,7 @@
         "php": "^8.4.1",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
-        "nnjeim/world": "dev-master#0c5ddb0668d184c94c2fb84a18272cc480413e7f as 2.0.0",
+        "nnjeim/world": "^2.0",
         "predis/predis": "^3.0"
     },
     "require-dev": {
