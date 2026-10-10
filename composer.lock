@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72f0426377f9780fb08983f1e67eac19",
+    "content-hash": "27097bba3609a0e7882a744c08060e77",
     "packages": [
         {
             "name": "brick/math",
@@ -2710,7 +2710,7 @@
         },
         {
             "name": "nnjeim/world",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nnjeim/world.git",
@@ -2731,7 +2731,6 @@
                 "orchestra/testbench": "^8.0 || ^9.0 || ^10.0 || ^11.0",
                 "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
             },
-            "default-branch": true,
             "type": "laravel-package",
             "extra": {
                 "laravel": {
@@ -2778,7 +2777,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nnjeim/world/issues",
-                "source": "https://github.com/nnjeim/world/tree/master"
+                "source": "https://github.com/nnjeim/world/tree/2.0.0"
             },
             "time": "2026-10-10T02:52:53+00:00"
         },
@@ -9083,18 +9082,9 @@
             "time": "2025-12-08T11:19:18+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "nnjeim/world",
-            "version": "9999999-dev",
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "nnjeim/world": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
