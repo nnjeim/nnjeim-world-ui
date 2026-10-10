@@ -363,7 +363,7 @@ async function initializeLocationSelect(status) {
         result.textContent = [country?.name, state?.name, city?.name].filter(Boolean).join(' · ');
     };
 
-    const loadCities = async (stateId, preferredId = null) => {
+    const loadCities = async (stateId, preferredName = null) => {
         citySelect.disabled = true;
         citySelect.replaceChildren(new Option('Loading cities…'));
         const query = new URLSearchParams({
@@ -371,12 +371,13 @@ async function initializeLocationSelect(status) {
             fields: 'state_id,country_code',
         });
         cities = await fetchData(`/api/cities?${query}`);
-        populateSelect(citySelect, cities, (item) => item.name, preferredId);
+        const preferredCity = cities.find((item) => item.name === preferredName);
+        populateSelect(citySelect, cities, (item) => item.name, preferredCity?.id);
         updateResult();
         status.textContent = `${cities.length} cities loaded for the selected state`;
     };
 
-    const loadStates = async (countryCode, preferredId = null, preferredCityId = null) => {
+    const loadStates = async (countryCode, preferredName = null, preferredCityName = null) => {
         stateSelect.disabled = true;
         citySelect.disabled = true;
         stateSelect.replaceChildren(new Option('Loading states…'));
@@ -386,10 +387,11 @@ async function initializeLocationSelect(status) {
             fields: 'country_code',
         });
         states = await fetchData(`/api/states?${query}`);
-        populateSelect(stateSelect, states, (item) => item.name, preferredId);
+        const preferredState = states.find((item) => item.name === preferredName);
+        populateSelect(stateSelect, states, (item) => item.name, preferredState?.id);
 
         if (stateSelect.value) {
-            await loadCities(stateSelect.value, preferredCityId);
+            await loadCities(stateSelect.value, preferredCityName);
         }
     };
 
@@ -408,7 +410,7 @@ async function initializeLocationSelect(status) {
     populateSelect(countrySelect, countries, (item) => `${flagFromIso(item.iso2)} ${item.name}`, romania?.id);
 
     if (romania) {
-        await loadStates(romania.iso2, 3338, 95226);
+        await loadStates(romania.iso2, 'Cluj County', 'Cluj-Napoca');
     }
 
     status.textContent = 'Country, state, and city are connected to the live API';

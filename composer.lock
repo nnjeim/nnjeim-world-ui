@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bb5827cc045101104d571e32eb8de5a",
+    "content-hash": "72f0426377f9780fb08983f1e67eac19",
     "packages": [
         {
             "name": "brick/math",
@@ -2710,16 +2710,16 @@
         },
         {
             "name": "nnjeim/world",
-            "version": "1.1.39",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nnjeim/world.git",
-                "reference": "1a419baf4e9dc6e83bdb392c8c8ebf328135856a"
+                "reference": "0c5ddb0668d184c94c2fb84a18272cc480413e7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nnjeim/world/zipball/1a419baf4e9dc6e83bdb392c8c8ebf328135856a",
-                "reference": "1a419baf4e9dc6e83bdb392c8c8ebf328135856a",
+                "url": "https://api.github.com/repos/nnjeim/world/zipball/0c5ddb0668d184c94c2fb84a18272cc480413e7f",
+                "reference": "0c5ddb0668d184c94c2fb84a18272cc480413e7f",
                 "shasum": ""
             },
             "require": {
@@ -2731,6 +2731,7 @@
                 "orchestra/testbench": "^8.0 || ^9.0 || ^10.0 || ^11.0",
                 "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
             },
+            "default-branch": true,
             "type": "laravel-package",
             "extra": {
                 "laravel": {
@@ -2777,9 +2778,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nnjeim/world/issues",
-                "source": "https://github.com/nnjeim/world/tree/1.1.39"
+                "source": "https://github.com/nnjeim/world/tree/master"
             },
-            "time": "2026-09-22T05:29:27+00:00"
+            "time": "2026-10-10T02:52:53+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -9082,9 +9083,18 @@
             "time": "2025-12-08T11:19:18+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "nnjeim/world",
+            "version": "9999999-dev",
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "nnjeim/world": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -9094,5 +9104,5 @@
     "platform-overrides": {
         "php": "8.4.1"
     },
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

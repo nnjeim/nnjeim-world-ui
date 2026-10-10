@@ -83,9 +83,13 @@
                 <div>
                     <div class="mb-7 flex items-center gap-4">
                         <img src="{{ asset('brand/world-logo.jpg') }}" alt="World package logo" class="size-20 rounded-2xl border border-slate-200 bg-white object-cover shadow-lg shadow-[#f45143]/10 sm:size-24">
-                        <a href="https://github.com/nnjeim/world/releases/tag/{{ config('world_ui.package_version') }}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#f45143]/20 bg-[#f45143]/8 px-3 py-1.5 text-xs font-medium text-[#d83f33] transition hover:bg-[#f45143]/12">
+                        <a href="{{ config('world_ui.release_url') }}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#f45143]/20 bg-[#f45143]/8 px-3 py-1.5 text-xs font-medium text-[#d83f33] transition hover:bg-[#f45143]/12">
                             <span class="size-1.5 rounded-full bg-[#f45143] shadow-[0_0_12px_rgba(244,81,67,.55)]"></span>
-                            Version {{ config('world_ui.package_version') }} is available
+                            @if (config('world_ui.release_preview'))
+                                World {{ config('world_ui.package_version') }} release preview
+                            @else
+                                Version {{ config('world_ui.package_version') }} is available
+                            @endif
                             <span aria-hidden="true">→</span>
                         </a>
                     </div>
@@ -111,16 +115,20 @@
                     <div class="code-panel mt-10 max-w-xl overflow-hidden rounded-xl border border-slate-800 bg-slate-950 shadow-2xl shadow-slate-900/20">
                         <div class="flex items-center justify-between border-b border-white/8 px-4 py-2.5">
                             <span class="text-xs font-medium text-slate-400">Terminal</span>
-                            <button type="button" data-copy-text="composer require nnjeim/world" class="copy-action inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-slate-400 transition hover:bg-white/8 hover:text-white" aria-label="Copy installation command">
+                            <button type="button" data-copy-text="{{ config('world_ui.install_command') }}" class="copy-action inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-slate-400 transition hover:bg-white/8 hover:text-white" aria-label="Copy installation command">
                                 <svg viewBox="0 0 24 24" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
                                 <span data-copy-label>Copy</span>
                             </button>
                         </div>
                         <div class="flex items-center gap-3 px-4 py-4 font-mono text-sm">
                             <span class="select-none text-cyan-300">$</span>
-                            <code class="text-slate-200">composer require nnjeim/world</code>
+                            <code class="text-slate-200">{{ config('world_ui.install_command') }}</code>
                         </div>
                     </div>
+                    <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400">
+                        Upgrading from 1.x? Read the <a href="{{ config('world_ui.upgrade_url') }}" class="text-cyan-300 underline" target="_blank" rel="noreferrer">2.0 upgrade guide</a> before updating.
+                        To stay on 1.x, keep <code>^1.1</code> and use the <a href="{{ config('world_ui.legacy_documentation_url') }}" class="text-cyan-300 underline" target="_blank" rel="noreferrer">1.x documentation</a>.
+                    </p>
                 </div>
 
                 <div class="relative mx-auto w-full max-w-xl lg:mx-0 lg:ml-auto">
@@ -345,7 +353,7 @@
                         <p class="text-sm font-semibold text-cyan-300">Build globally from day one</p>
                         <h2 class="mx-auto mt-4 max-w-2xl text-4xl font-semibold tracking-[-.035em] text-white sm:text-5xl">Add World to your next Laravel application.</h2>
                         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                            <button type="button" data-copy-text="composer require nnjeim/world" class="brand-primary copy-action inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+                            <button type="button" data-copy-text="{{ config('world_ui.install_command') }}" class="brand-primary copy-action inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
                                 <span data-copy-label>Copy install command</span>
                             </button>
                             <a href="https://packagist.org/packages/nnjeim/world" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center rounded-xl border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">View on Packagist</a>
