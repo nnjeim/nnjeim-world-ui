@@ -31,9 +31,9 @@ test('location selector loads dependent states and cities', async ({ page }) => 
     await page.goto('/components/location-selector');
 
     await expect(page.locator('[data-demo-status]')).toHaveText('Country, state, and city are connected to the live API');
-    await expect(page.locator('[data-location-country]')).toHaveValue('181');
-    await expect(page.locator('[data-location-state]')).toHaveValue('3338');
-    await expect(page.locator('[data-location-city]')).toHaveValue('95226');
+    await expect(page.locator('[data-location-country] option:checked')).toContainText('Romania');
+    await expect(page.locator('[data-location-state] option:checked')).toHaveText('Cluj County');
+    await expect(page.locator('[data-location-city] option:checked')).toHaveText('Cluj-Napoca');
     await expect(page.locator('[data-location-result]')).toHaveText('Romania · Cluj County · Cluj-Napoca');
 
     await page.getByRole('tab', { name: 'Angular' }).click();
@@ -49,4 +49,38 @@ test('component documentation remains within a mobile viewport', async ({ page }
     }));
 
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+});
+
+test('World 2.0 returns optional flags and the Cayman districts and cities', async ({ request }) => {
+    const flagResponse = await request.get('/api/countries?fields=iso2,flag&filters[iso2]=KY');
+    expect(flagResponse.ok()).toBeTruthy();
+    const flagPayload = await flagResponse.json();
+    expect(flagPayload.success).toBe(true);
+    expect(flagPayload.data).toHaveLength(1);
+    expect(flagPayload.data[0]).toMatchObject({ iso2: 'KY', flag: '🇰🇾' });
+
+    const statesResponse = await request.get('/api/states?fields=country_code&filters[country_code]=KY');
+    expect(statesResponse.ok()).toBeTruthy();
+    const statesPayload = await statesResponse.json();
+    expect(statesPayload.data).toHaveLength(6);
+    expect(statesPayload.data.map((state) => state.name)).toEqual(expect.arrayContaining([
+        'George Town', 'West Bay', 'Bodden Town', 'North Side', 'East End', 'Sister Islands',
+    ]));
+
+    const citiesResponse = await request.get('/api/cities?fields=state_id,country_code&filters[country_code]=KY');
+    expect(citiesResponse.ok()).toBeTruthy();
+    const citiesPayload = await citiesResponse.json();
+    expect(citiesPayload.data).toHaveLength(15);
+    const stateIds = statesPayload.data.map((state) => state.id);
+    for (const city of citiesPayload.data) {
+        expect(city.country_code).toBe('KY');
+        expect(stateIds).toContain(city.state_id);
+    }
+});
+
+test('component setup distinguishes World 2.0 from existing 1.x installations', async ({ page }) => {
+    await page.goto('/components/country-selector');
+    await expect(page.getByText('composer require nnjeim/world:^2.0', { exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: '2.0 upgrade guide' })).toHaveAttribute('href', /docs\/2\.0\/UPGRADE\.md$/);
+    await expect(page.getByRole('link', { name: '1.x documentation' }).first()).toHaveAttribute('href', /docs\/1\.x\/README\.md$/);
 });

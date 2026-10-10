@@ -137,10 +137,10 @@
                                 <p class="text-xs font-semibold uppercase tracking-[.18em] text-cyan-300">Installation</p>
                                 <h2 id="installation-heading" class="mt-2 text-2xl font-semibold text-white">Install once, use everywhere.</h2>
                             </div>
-                            <a href="https://github.com/nnjeim/world#installation" target="_blank" rel="noreferrer" class="hidden text-sm font-medium text-cyan-300 transition hover:text-cyan-200 sm:inline">Package setup →</a>
+                            <a href="{{ config('world_ui.documentation_url') }}#installation" target="_blank" rel="noreferrer" class="hidden text-sm font-medium text-cyan-300 transition hover:text-cyan-200 sm:inline">Package setup →</a>
                         </div>
                         <div class="mt-5 grid gap-3 sm:grid-cols-2">
-                            @foreach (['composer require nnjeim/world', 'php artisan world:install'] as $command)
+                            @foreach ([config('world_ui.install_command'), 'php -d memory_limit=1G artisan world:install'] as $command)
                                 <div class="flex min-w-0 items-center justify-between gap-4 rounded-xl border border-white/8 bg-slate-900/70 px-4 py-3">
                                     <code class="truncate font-mono text-sm text-slate-300">{{ $command }}</code>
                                     <button type="button" data-copy-text="{{ $command }}" class="copy-action shrink-0 rounded-md px-2 py-1 text-xs text-slate-500 transition hover:bg-white/8 hover:text-white"><span data-copy-label>Copy</span></button>
@@ -148,6 +148,7 @@
                             @endforeach
                         </div>
                         <p class="mt-3 text-sm text-slate-500">React, Angular, and Vue consume the same Laravel API; no frontend package is required.</p>
+                        <p class="mt-3 text-sm text-slate-500">For the default database cache, run application migrations first. Existing 1.x users should review the <a href="{{ config('world_ui.upgrade_url') }}" class="text-cyan-300 underline" target="_blank" rel="noreferrer">2.0 upgrade guide</a> or stay with the <a href="{{ config('world_ui.legacy_documentation_url') }}" class="text-cyan-300 underline" target="_blank" rel="noreferrer">1.x documentation</a>.</p>
                     </section>
 
                     <section class="mt-16" aria-labelledby="playground-heading">

@@ -9,7 +9,7 @@ The site introduces the package, exercises its live API, and provides copy-ready
 - PHP 8.4
 - Laravel 13
 - Tailwind CSS 4 and Vite 8
-- `nnjeim/world` 1.1.39
+- `nnjeim/world` 2.0.0 (tested commit preview until the release is published)
 
 ## Local development
 
@@ -19,11 +19,21 @@ npm install
 cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
-php artisan world:install
+php artisan migrate
+php -d memory_limit=1G artisan world:install
 composer run dev
 ```
 
 The application requires PHP 8.4 or later. The default environment uses SQLite and exposes the package routes under `/api`.
+
+## Package version and upgrades
+
+The site exercises World 2.0. The landing page and component guides link both the
+[2.0 documentation](https://github.com/nnjeim/world/blob/master/docs/2.0/README.md) and
+[1.x documentation](https://github.com/nnjeim/world/blob/master/docs/1.x/README.md).
+Existing users should review the [upgrade guide](https://github.com/nnjeim/world/blob/master/docs/2.0/UPGRADE.md).
+Caret 1.x constraints stay on 1.x. The demo selects database IDs from API responses;
+example IDs are not portable between installations.
 
 ## Component catalogue
 

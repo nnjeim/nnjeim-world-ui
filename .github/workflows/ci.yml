@@ -45,7 +45,8 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           touch database/database.sqlite
-          php artisan world:install --no-interaction
+          php artisan migrate --force --no-interaction
+          php -d memory_limit=1G artisan world:install --no-interaction
 
       - name: Build frontend assets
         run: npm run build
