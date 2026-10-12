@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -64,10 +64,10 @@ jobs:
 
     steps:
       - name: Check out application source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Check out cluster manifests
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: nnjeim/bmbc-cluster
           token: ${{ secrets.CLUSTER_REPO_TOKEN }}
