@@ -87,6 +87,7 @@ jobs:
           kubectl -n world rollout status deployment/world-ui --timeout=180s
           curl --fail --retry 5 --retry-delay 3 https://world.bmbc.cloud/up
           curl --fail --retry 5 --retry-delay 3 'https://world.bmbc.cloud/api/countries?search=rom' | jq -e '.success == true and .data[0].name == "Romania"'
+          curl --fail --retry 5 --retry-delay 3 'https://world.bmbc.cloud/api/cities' | jq -e '.success == true and (.data | length) > 100000'
 
       - name: Open the cluster-manifest pull request
         env:
